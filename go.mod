@@ -1,4 +1,4 @@
-module simwas
+module github.com/danigilang17/be-simwas
 
 go 1.21.0
 

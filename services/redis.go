@@ -2,6 +2,8 @@ package services
 
 import (
 	"context"
+	"time"
+
 	"github.com/go-redis/redis/v8"
 )
 
@@ -15,7 +17,8 @@ func InitRedis() {
 
 func SetRedisKey(key, value string, expiration int64) error {
 	ctx := context.Background()
-	return RedisClient.Set(ctx, key, value, expiration).Err()
+	duration := time.Duration(expiration) * time.Second
+	return RedisClient.Set(ctx, key, value, duration).Err()
 }
 
 func GetRedisKey(key string) (string, error) {
